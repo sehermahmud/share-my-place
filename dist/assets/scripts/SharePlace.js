@@ -178,12 +178,12 @@ var Modal = /*#__PURE__*/function () {
     value: function show() {
       if ('content' in document.createElement('template')) {
         var modalElements = document.importNode(this.modalTemplateEl.content, true);
-        var modalElement = modalElements.querySelector('.modal');
-        var backdropElement = modalElements.querySelector('.backdrop');
+        this.modalElement = modalElements.querySelector('.modal');
+        this.backdropElement = modalElements.querySelector('.backdrop');
         var contentElement = document.importNode(this.contentTemplateEl.content, true);
-        modalElement.appendChild(contentElement);
-        document.body.insertAdjacentElement('afterbegin', modalElement);
-        document.body.insertAdjacentElement('afterbegin', backdropElement);
+        this.modalElement.appendChild(contentElement);
+        document.body.insertAdjacentElement('afterbegin', this.modalElement);
+        document.body.insertAdjacentElement('afterbegin', this.backdropElement);
       } else {
         // fallback code
         alert(this.fallbackText);
@@ -191,7 +191,15 @@ var Modal = /*#__PURE__*/function () {
     }
   }, {
     key: "hide",
-    value: function hide() {}
+    value: function hide() {
+      if (this.modalElement) {
+        document.body.removeChild(this.modalElement); // this.modalElement.remove()
+
+        document.body.removeChild(this.backdropElement);
+        this.modalElement = null;
+        this.backdropElement = null;
+      }
+    }
   }]);
 
   return Modal;
