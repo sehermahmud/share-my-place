@@ -90,10 +90,55 @@
 /*!************************!*\
   !*** ./src/MyPlace.js ***!
   \************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UI_Map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UI/Map */ "./src/UI/Map.js");
+/* harmony import */ var _UI_Map__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_UI_Map__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+
+
+var LoadedPlace = function LoadedPlace(coordinates, address) {
+  _classCallCheck(this, LoadedPlace);
+
+  new _UI_Map__WEBPACK_IMPORTED_MODULE_0__["Map"](coordinates);
+  var headerTitleEl = document.querySelector('header h1');
+  headerTitleEl.textContent = address;
+};
+
+var url = new URL(location.href);
+var queryParams = url.searchParams;
+var coords = {
+  lat: parseFloat(queryParams.get('lat')),
+  lng: +queryParams.get('lng')
+};
+var address = queryParams.get('address');
+new LoadedPlace(coords, address);
+
+/***/ }),
+
+/***/ "./src/UI/Map.js":
+/*!***********************!*\
+  !*** ./src/UI/Map.js ***!
+  \***********************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+document.getElementById('map').innerHTML = ''; // clear the <p> in the <div id="map">
 
+var map = new ol.Map({
+  target: 'map',
+  layers: [new ol.layer.Tile({
+    source: new ol.source.OSM()
+  })],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([37.41, 8.82]),
+    zoom: 4
+  })
+});
 
 /***/ })
 
