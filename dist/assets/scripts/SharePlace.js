@@ -90,14 +90,19 @@
 /*!***************************!*\
   !*** ./src/SharePlace.js ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UI_Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UI/Modal */ "./src/UI/Modal.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var PlaceFinder = /*#__PURE__*/function () {
   function PlaceFinder() {
@@ -117,13 +122,17 @@ var PlaceFinder = /*#__PURE__*/function () {
         return;
       }
 
+      var modal = new _UI_Modal__WEBPACK_IMPORTED_MODULE_0__["Modal"]('loading-modal-content', 'Loading location - please wait!');
+      modal.show();
       navigator.geolocation.getCurrentPosition(function (successResult) {
+        modal.hide();
         var coordinates = {
           lat: successResult.coords.latitude + Math.random() * 50,
           lng: successResult.coords.longitude + Math.random() * 50
         };
         console.log(coordinates);
       }, function (error) {
+        modal.hide();
         alert('Could not locate you unfortunately. Please enter an address manually!');
       });
     }
@@ -136,6 +145,57 @@ var PlaceFinder = /*#__PURE__*/function () {
 }();
 
 var placeFinder = new PlaceFinder();
+
+/***/ }),
+
+/***/ "./src/UI/Modal.js":
+/*!*************************!*\
+  !*** ./src/UI/Modal.js ***!
+  \*************************/
+/*! exports provided: Modal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Modal", function() { return Modal; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Modal = /*#__PURE__*/function () {
+  function Modal(contentId, fallbackText) {
+    _classCallCheck(this, Modal);
+
+    this.fallbackText = fallbackText;
+    this.contentTemplateEl = document.getElementById(contentId);
+    this.modalTemplateEl = document.getElementById('modal-template');
+  }
+
+  _createClass(Modal, [{
+    key: "show",
+    value: function show() {
+      if ('content' in document.createElement('template')) {
+        var modalElements = document.importNode(this.modalTemplateEl.content, true);
+        var modalElement = modalElements.querySelector('.modal');
+        var backdropElement = modalElements.querySelector('.backdrop');
+        var contentElement = document.importNode(this.contentTemplateEl.content, true);
+        modalElement.appendChild(contentElement);
+        document.body.insertAdjacentElement('afterbegin', modalElement);
+        document.body.insertAdjacentElement('afterbegin', backdropElement);
+      } else {
+        // fallback code
+        alert(this.fallbackText);
+      }
+    }
+  }, {
+    key: "hide",
+    value: function hide() {}
+  }]);
+
+  return Modal;
+}();
 
 /***/ })
 
