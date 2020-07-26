@@ -96,13 +96,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UI/Modal */ "./src/UI/Modal.js");
-/* harmony import */ var _Utility_Location__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Utility/Location */ "./src/Utility/Location.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 
 
 
@@ -132,7 +130,7 @@ var PlaceFinder = /*#__PURE__*/function () {
           lat: successResult.coords.latitude + Math.random() * 50,
           lng: successResult.coords.longitude + Math.random() * 50
         };
-        console.log(coordinates);
+        console.log(coordinates); // alert('coordinates')
       }, function (error) {
         modal.hide();
         alert('Could not locate you unfortunately. Please enter an address manually!');
@@ -218,70 +216,6 @@ var Modal = /*#__PURE__*/function () {
 
   return Modal;
 }();
-
-/***/ }),
-
-/***/ "./src/Utility/Location.js":
-/*!*********************************!*\
-  !*** ./src/Utility/Location.js ***!
-  \*********************************/
-/*! exports provided: getAddressFromCoords, getCoordsFromAddress */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAddressFromCoords", function() { return getAddressFromCoords; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCoordsFromAddress", function() { return getCoordsFromAddress; });
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function getAddressFromCoords(_x) {
-  return _getAddressFromCoords.apply(this, arguments);
-}
-
-function _getAddressFromCoords() {
-  _getAddressFromCoords = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(coords) {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            return _context.abrupt("return", '6th Avenue');
-
-          case 1:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _getAddressFromCoords.apply(this, arguments);
-}
-
-function getCoordsFromAddress(_x2) {
-  return _getCoordsFromAddress.apply(this, arguments);
-}
-
-function _getCoordsFromAddress() {
-  _getCoordsFromAddress = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(address) {
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            return _context2.abrupt("return", {
-              lat: 47.01,
-              lng: 33.55
-            });
-
-          case 1:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-  return _getCoordsFromAddress.apply(this, arguments);
-}
 
 /***/ })
 

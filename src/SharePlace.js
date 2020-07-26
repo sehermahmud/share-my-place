@@ -1,5 +1,4 @@
 import { Modal } from './UI/Modal';
-import { getCoordsFromAddress } from './Utility/Location'
 
 class PlaceFinder {
   constructor() {
@@ -27,13 +26,14 @@ class PlaceFinder {
           lng: successResult.coords.longitude + Math.random() * 50,
         };
         console.log(coordinates);
+        // alert('coordinates')
       },
       error => {
         modal.hide();
         alert(
           'Could not locate you unfortunately. Please enter an address manually!'
         );
-      }
+      },
     );
   }
 
