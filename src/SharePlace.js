@@ -1,4 +1,5 @@
 import { Modal } from './UI/Modal';
+import { getCoordsFromAddress } from './Utility/Location'
 
 class PlaceFinder {
   constructor() {
@@ -36,7 +37,20 @@ class PlaceFinder {
     );
   }
 
-  findAddressHandler() {}
+  findAddressHandler(event) {
+    event.preventDefault();
+    const address = event.target.querySelector('input').value;
+    if (!address || address.trim().length === 0) {
+      alert('Invalid address entered - please try again!');
+      return;
+    } else {
+      alert(`it a success but it won't work because it's a fake map and location, address demo project.`)
+    }
+    const modal = new Modal(
+      'loading-modal-content',
+      'Loading location - please wait!'
+    );
+  }
 }
 
 const placeFinder = new PlaceFinder();
